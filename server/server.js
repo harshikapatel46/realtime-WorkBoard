@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
   res.send("Server is running 🚀");
 });
 
-connectDB();
+await connectDB();
 
 let currentPort = preferredPort;
 
