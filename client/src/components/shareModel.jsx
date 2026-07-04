@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-const [copied, setCopied] = useState(false);
+import { useEffect, useState } from "react";
 
 function ShareModal({ open, onClose, shareLink }) {
+  const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (!open) return undefined;
 
