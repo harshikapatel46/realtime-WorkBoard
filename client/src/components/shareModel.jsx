@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+const [copied, setCopied] = useState(false);
 
 function ShareModal({ open, onClose, shareLink }) {
   useEffect(() => {
@@ -19,6 +20,11 @@ function ShareModal({ open, onClose, shareLink }) {
 
   const handleCopyLink = async () => {
     await navigator.clipboard.writeText(shareLink);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   if (!open) return null;
@@ -60,7 +66,7 @@ function ShareModal({ open, onClose, shareLink }) {
             onClick={handleCopyLink}
             className="shrink-0 rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
           >
-            Copy
+            {copied ? "Copied!" : "Copy Link"}
           </button>
         </div>
 
