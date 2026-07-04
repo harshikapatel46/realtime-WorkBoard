@@ -35,6 +35,7 @@ const io = new Server(server, {
   cors: {
     origin: clientOrigin,
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -49,7 +50,6 @@ app.get("/test", async (req, res) => {
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
-
   socket.on("join-room", async (roomId) => {
     socket.join(roomId);
     console.log(`${socket.id} joined ${roomId}`);
