@@ -31,11 +31,17 @@ function Dashboard() {
   };
 
   const handleJoinRoom = () => {
-    const nextRoomId = roomId.trim();
+    let input = roomId.trim();
 
-    if (!nextRoomId) return;
+    if (!input) return;
 
-    navigate(`/whiteboard/${nextRoomId}`);
+    // If a full URL is pasted, extract the room ID
+    if (input.startsWith("http")) {
+      const parts = input.split("/");
+      input = parts[parts.length - 1];
+    }
+
+    navigate(`/whiteboard/${input}`);
   };
 
   const handleJoinOnEnter = (e) => {
