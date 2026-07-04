@@ -164,7 +164,7 @@ function Whiteboard() {
       >
         ← Back
       </button>
-      
+
       <Canvas
         updateShapes={updateShapes}
         onMouseDown={handleMouseDown}

@@ -31,16 +31,9 @@ function Dashboard() {
   };
 
   const handleJoinRoom = () => {
-    const input = roomId.trim();
+    const nextRoomId = roomId.trim();
 
-    if (!input) return;
-
-    let nextRoomId = input;
-
-    // If the user pasted the full link, extract the room ID
-    if (input.includes("/whiteboard/")) {
-      nextRoomId = input.split("/whiteboard/")[1];
-    }
+    if (!nextRoomId) return;
 
     navigate(`/whiteboard/${nextRoomId}`);
   };

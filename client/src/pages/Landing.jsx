@@ -12,9 +12,16 @@ function Landing() {
   };
 
   const handleJoinRoom = () => {
-    const nextRoomId = roomId.trim();
+    const input = roomId.trim();
 
-    if (!nextRoomId) return;
+    if (!input) return;
+
+    let nextRoomId = input;
+
+    // If a full share link is pasted, extract the room ID
+    if (input.includes("/whiteboard/")) {
+      nextRoomId = input.split("/whiteboard/").pop();
+    }
 
     navigate(`/whiteboard/${nextRoomId}`);
   };
