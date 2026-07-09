@@ -1,16 +1,82 @@
-# React + Vite
+# 🎨 RealTime Workboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack collaborative whiteboard application that enables multiple users to create, edit, and share drawings in real time. The project provides an interactive canvas with multiple drawing tools, live synchronization using Socket.IO, and secure user authentication for collaborative workspaces.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+### Authentication
+- Secure user registration and login
+- JWT-based authentication
+- Protected routes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Collaboration
+- Real-time drawing synchronization
+- Multiple users on the same board
+- Shared collaborative workspace
+- Live updates across connected clients
 
-## Expanding the ESLint configuration
+### Board Management
+- Create new whiteboards
+- Join existing boards
+- Save whiteboard sessions
+- Load previous sessions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- React Router DOM
+- React Konva
+
+### Backend
+- Node.js
+- Express.js
+- Socket.IO
+- JWT Authentication
+- bcrypt.js
+
+### Database
+- MongoDB
+- Mongoose
+
+---
+## 🚀 Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/harshikapatel46/realtime-WorkBoard.git
+```
+
+### Install dependencies
+
+**Frontend**
+
+```bash
+cd client
+npm install
+```
+
+**Backend**
+
+```bash
+cd server
+npm install
+```
+
+### Run the application
+
+**Frontend**
+
+```bash
+npm run dev
+```
+
+**Backend**
+
+```bash
+npm run dev
+```
