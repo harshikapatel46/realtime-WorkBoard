@@ -18,6 +18,9 @@ import useCanvasEvents from "../hooks/useCanvasEvents";
 import { useWhiteboard } from "../context/WhiteboardContext";
 import { saveWhiteboard } from "../services/whiteboardService";
 
+import { useRef } from "react";
+import { jsPDF } from "jspdf";
+
 function Whiteboard() {
   useAuth();
   const { roomId } = useParams();
@@ -26,6 +29,7 @@ function Whiteboard() {
   const [shareOpen, setShareOpen] = useState(false);
   const [saveLabel, setSaveLabel] = useState("Save");
   const navigate = useNavigate();
+  const stageRef = useRef(null);
 
   const {
     shapes,
@@ -147,6 +151,44 @@ function Whiteboard() {
 
   useKeyboard(selectedId, handleDelete);
 
+  const exportPNG = () =>{
+    console.log("exportPNG called");
+    console.log(stageRef.current);
+
+    if ( !stageRef.current ) return;
+    const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
+    const link = document.createElement("a");
+    link.download = "whiteboard.png";
+    link.href = uri;
+   
+    link.click();
+     alert("PNG exported successfully!");
+    
+  };
+  
+  const exportPDF = () => {
+    if ( !stageRef.current ) return;
+    const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
+
+    const pdf = new jsPDF(
+      "landscape",
+      "px",
+      [
+        stageRef.current.width() ,
+        stageRef.current.height() ,
+      ]
+    );
+    pdf.addImage(
+      uri,
+      "PNG",
+      0,
+      0,
+      stageRef.current.width(),
+      stageRef.current.height()
+    )
+     pdf.save("whiteboard.pdf");
+  };
+
   const { handleMouseDown, handleMouseMove, handleMouseUp } = useCanvasEvents({
     activeTool,
     isTextTool: tool === "Text",
@@ -166,6 +208,7 @@ function Whiteboard() {
       </button>
 
       <Canvas
+        stageRef={stageRef}
         updateShapes={updateShapes}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -185,6 +228,8 @@ function Whiteboard() {
         onShare={() => setShareOpen(true)}
         onSave={handleSave}
         saveLabel={saveLabel}
+         onExportPNG={exportPNG}
+         onExportPDF={exportPDF}
       />
 
       <ShareModal

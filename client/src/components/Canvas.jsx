@@ -6,6 +6,7 @@ import { useWhiteboard } from "../context/WhiteboardContext";
 import TextEditor from "./TextEditor";
 
 function Canvas({
+  stageRef,
   onMouseDown,
   onMouseMove,
   onMouseUp,
@@ -16,8 +17,10 @@ function Canvas({
   const shapeRefs = useRef({});
 
   return (
+    
     <>
       <Stage
+        ref={stageRef}
         width={window.innerWidth}
         height={window.innerHeight}
         onMouseDown={onMouseDown}
