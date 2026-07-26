@@ -16,7 +16,10 @@ dotenv.config();
 const app = express();
 const DEFAULT_PORT = 9002;
 const preferredPort = Number(process.env.PORT) || DEFAULT_PORT;
-const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
+const clientOrigin = [
+  "http://localhost:5173",
+  "https://realtime-workboard.vercel.app",
+];
 
 const server = http.createServer(app);
 
